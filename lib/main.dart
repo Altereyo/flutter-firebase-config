@@ -25,15 +25,19 @@ Future<void> main() async {
     defaultRoute = '/connection_error';
   } else if (!linkSaved) {
     await connectFirebase();
-    final FirebaseRemoteConfig remoteConfig = await getFirebaseRemoteConfig();
-    String firebaseLink = remoteConfig.getString('webview_link');
+    try {
+      final FirebaseRemoteConfig remoteConfig = await getFirebaseRemoteConfig();
+      String firebaseLink = remoteConfig.getString('webview_link');
 
-    if (firebaseLink == '' || isEmulator) {
-      defaultRoute = '/news';
-    } else {
-      webviewLink = firebaseLink;
-      prefs.setString('webview_link', firebaseLink);
-      defaultRoute = '/webview';
+      if (firebaseLink == '' || isEmulator) {
+        defaultRoute = '/news';
+      } else {
+        webviewLink = firebaseLink;
+        prefs.setString('webview_link', firebaseLink);
+        defaultRoute = '/webview';
+      }
+    } catch (err) {
+      defaultRoute = '/connection_error';
     }
   }
 
