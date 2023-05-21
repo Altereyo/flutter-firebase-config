@@ -1,0 +1,27 @@
+name: flutter_firebase_config
+description: A new Flutter project.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_inappwebview: ^5.7.2+3
+  firebase_remote_config: ^4.2.0
+  firebase_analytics: ^10.4.1
+  firebase_core: ^2.12.0
+  shared_preferences: ^2.1.1
+  faker: ^2.1.0
+  device_info_plus: ^9.0.1
+  connectivity_plus: ^4.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
