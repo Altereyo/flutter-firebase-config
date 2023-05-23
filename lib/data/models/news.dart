@@ -36,8 +36,8 @@ class News {
 
   Map<String, dynamic> toMap() {
     return {
-      'title': this.title,
-      'description': this.description,
+      'title': title,
+      'description': description,
     };
   }
 
