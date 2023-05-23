@@ -1,56 +1,52 @@
-import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:flutter_firebase_config/data/services/connection_service.dart';
+import 'package:flutter_firebase_config/data/services/firebase_service.dart';
+import 'package:flutter_firebase_config/modules/connection_error/connection_error.dart';
+import 'package:flutter_firebase_config/modules/news/news_controlller.dart';
+import 'package:flutter_firebase_config/modules/news/news_screen.dart';
+import 'package:flutter_firebase_config/modules/webview/webview_controller.dart';
+import 'package:flutter_firebase_config/modules/webview/webview_screen.dart';
+import 'package:flutter_firebase_config/core/functions/functions.dart';
+import 'package:flutter_firebase_config/core/theme/theme_data.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_config/core/functions/functions.dart';
-import 'package:flutter_firebase_config/screens/connection_error.dart';
-import 'package:flutter_firebase_config/screens/news.dart';
-import 'package:flutter_firebase_config/screens/webview.dart';
-import 'package:flutter_firebase_config/styles/theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  await initServices();
 
-  String defaultRoute = '/news';
-  String? webviewLink = prefs.getString('webview_link');
-
-  bool internetConnected = await checkConnection();
-  bool isEmulator = await checkIsEmu();
-  bool linkSaved = webviewLink != null && webviewLink.isNotEmpty;
-
-  if (linkSaved && internetConnected) {
-    defaultRoute = '/webview';
-  } else if (linkSaved && !internetConnected) {
-    defaultRoute = '/connection_error';
-  } else if (!linkSaved) {
-    await connectFirebase();
-    try {
-      final FirebaseRemoteConfig remoteConfig = await getFirebaseRemoteConfig();
-      String firebaseLink = remoteConfig.getString('webview_link');
-
-      if (firebaseLink == '' || isEmulator) {
-        defaultRoute = '/news';
-      } else {
-        webviewLink = firebaseLink;
-        prefs.setString('webview_link', firebaseLink);
-        defaultRoute = '/webview';
-      }
-    } catch (err) {
-      defaultRoute = '/connection_error';
-    }
-  }
+  final String defaultRoute = await getRelevantRoute();
+  final SharedPreferences storage = await SharedPreferences.getInstance();
+  final String? webviewLink = storage.getString('webview_link');
 
   runApp(
-    MaterialApp(
-      title: 'Flutter Firebase config',
+    GetMaterialApp(
+      title: 'Flutter App',
       theme: themeData,
       initialRoute: defaultRoute,
-      routes: {
-        '/webview': (context) => WebViewScreen(url: webviewLink!),
-        '/news': (context) => const NewsScreen(),
-        '/connection_error': (_) => const ConnectionErrorScreen(),
-      },
+      onReady: () => Get.find<ConnectionService>().initConnectionListener(),
+      getPages: [
+        GetPage(
+          name: '/webview',
+          page: () => WebViewScreen(webviewLink!),
+          binding: BindingsBuilder(() => Get.lazyPut<WebViewController>(() => WebViewController()))
+        ),
+        GetPage(
+          name: '/news',
+          page: () => const NewsScreen(),
+          binding: BindingsBuilder(() => Get.lazyPut<NewsController>(() => NewsController()))
+        ),
+        GetPage(
+          name: '/connection_error',
+          page: () => const ConnectionErrorScreen(),
+        ),
+      ]
     ),
   );
+}
+
+Future<void> initServices() async {
+  Get.lazyPut(() => FirebaseService());
+  Get.lazyPut(() => ConnectionService());
 }

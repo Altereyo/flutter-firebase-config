@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_config/styles/app_colors.dart';
+import 'package:flutter_firebase_config/core/theme/app_colors.dart';
 
 class ConnectionErrorScreen extends StatelessWidget {
   const ConnectionErrorScreen({Key? key}) : super(key: key);

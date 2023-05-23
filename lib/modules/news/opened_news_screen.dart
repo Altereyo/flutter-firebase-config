@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_config/data/models/news.dart';
-import 'package:flutter_firebase_config/screens/webview.dart';
-import 'package:flutter_firebase_config/styles/app_colors.dart';
+import 'package:flutter_firebase_config/core/theme/app_colors.dart';
+import 'package:flutter_firebase_config/modules/news/news_controlller.dart';
+import 'package:get/get.dart';
 
 class OpenedNewsScreen extends StatelessWidget {
-  const OpenedNewsScreen(this.newsObj, {Key? key}) : super(key: key);
+  OpenedNewsScreen(this.newsObj, {Key? key}) : super(key: key);
   final News newsObj;
+  final NewsController controller = Get.find<NewsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +15,13 @@ class OpenedNewsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(newsObj.title!),
         leading: GestureDetector(
+          onTap: controller.onNewsBackTapped,
           child: Center(
-              child: Icon(Icons.arrow_back_ios, color: AppColors.textColor)),
-          onTap: () {
-            Navigator.pop(context);
-          },
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: AppColors.textColor,
+            ),
+          ),
         ),
       ),
       body: Padding(
@@ -41,9 +45,7 @@ class OpenedNewsScreen extends StatelessWidget {
             ),
             const Spacer(),
             GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => const WebViewScreen(url: 'https://google.com', allowExit: true)));
-              },
+              onTap: controller.onAboutTapped,
               child: RichText(
                 text: TextSpan(
                   text: 'Read more about ${newsObj.title} on ',
