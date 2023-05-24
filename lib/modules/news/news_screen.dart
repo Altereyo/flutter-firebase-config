@@ -14,45 +14,64 @@ class NewsScreen extends GetView<NewsController> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-        child: SingleChildScrollView(
-          child: Column(
-            children: controller.newsList.map((el) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 16),
-                child: GestureDetector(
-                  onTap: () => controller.onNewsTapped(el),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: AppColors.containerColor,
-                    ),
-                    child: Center(
-                      child: ListTile(
-                        leading: SizedBox(
-                          width: 110,
-                          height: 90,
-                          child: Placeholder(
-                            color: AppColors.accentColor,
+        child: Obx(() => !controller.newsLoaded.value
+            ? const Center(
+                child: CircularProgressIndicator(
+                  color: Color.fromARGB(255, 32, 7, 225),
+                ),
+              )
+            : SingleChildScrollView(
+                child: Column(
+                  children: controller.newsList.map((el) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: GestureDetector(
+                        onTap: () => controller.onNewsTapped(el),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: AppColors.containerColor,
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          child: Row(
+                            children: [
+                              Image.network(
+                                el.imageUrl!,
+                                width: 140,
+                              ),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      el.title!,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 2,
+                                      style: TextStyle(
+                                        color: AppColors.accentColor,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      el.description!,
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 3,
+                                      style: TextStyle(
+                                        color: AppColors.textColor,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                        title: Text(
-                          el.title!,
-                          style: TextStyle(color: AppColors.accentColor),
-                        ),
-                        subtitle: Text(
-                          el.description!,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 4,
-                          style: TextStyle(color: AppColors.textColor),
-                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  }).toList(),
                 ),
-              );
-            }).toList(),
-          ),
-        ),
+              )),
       ),
     );
   }

@@ -6,7 +6,11 @@ import 'package:get/get.dart';
 class WebViewScreen extends GetView<WebViewController> {
   final String url;
 
-  const WebViewScreen(this.url, {Key? key}) : super(key: key);
+  // overriding controller here fully guarantees that controller will be created if we redirect to this screen from Get.to, without using named route with its Binding with controller initializing inside
+  @override
+  final controller = Get.put<WebViewController>(WebViewController());
+
+  WebViewScreen(this.url, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
