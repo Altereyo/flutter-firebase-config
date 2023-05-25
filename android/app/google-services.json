@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:900706578476:android:6577732966e7f1675ba189",
         "android_client_info": {
-          "package_name": "com.greg.flutter_firebase_config"
+          "package_name": "com.sportsmozz.games"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "900706578476-0qhjvjbi5cl6bn18avgb04kio4e7vg11.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.greg.flutterFirebaseConfig"
+                "bundle_id": "com.sportsmozz.games"
               }
             }
           ]

@@ -1,4 +1,4 @@
-package com.greg.flutter_firebase_config
+package com.sportsmozz.games
 
 import io.flutter.embedding.android.FlutterActivity
 
