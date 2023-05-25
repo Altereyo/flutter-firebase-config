@@ -17,6 +17,7 @@ dependencies:
   get: ^4.6.5
   device_info_plus: ^9.0.1
   connectivity_plus: ^4.0.1
+  flutter_native_splash: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -29,9 +30,14 @@ flutter:
   uses-material-design: true
   assets:
     - assets/news_response.json
+    - assets/images/app_icon.png
 
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/images/app_icon.png"
   min_sdk_android: 21
+
+flutter_native_splash:
+  color: "#5E5E5E"
+  image: assets/images/app_icon.png
