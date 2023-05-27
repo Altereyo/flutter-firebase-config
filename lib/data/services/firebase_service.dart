@@ -10,6 +10,7 @@ class FirebaseService extends GetxService {
   Future<void> connect() async {
     if (!connected) {
       await Firebase.initializeApp(
+        name: 'Flutter firebase-config app',
         options: DefaultFirebaseOptions.currentPlatform,
       );
       connected = true;
