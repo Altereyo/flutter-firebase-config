@@ -25,7 +25,7 @@ Future<String> getRelevantRoute() async {
 
   try {
     final FirebaseRemoteConfig? remoteConfig = await firebaseService.getRemoteConfig();
-    String webviewLink = remoteConfig!.getString('webview_link');
+    String webviewLink = remoteConfig!.getString('url');
 
     if (webviewLink == '' || isEmulator) {
       return '/news';
