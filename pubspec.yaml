@@ -10,9 +10,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_inappwebview: ^5.7.2+3
-  firebase_remote_config: ^4.2.0
+  firebase_remote_config: ^4.2.2
   firebase_analytics: ^10.4.1
-  firebase_core: ^2.12.0
+  firebase_core: ^2.13.1
   shared_preferences: ^2.1.1
   get: ^4.6.5
   device_info_plus: ^9.0.1
@@ -29,7 +29,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/news_response.json
     - assets/images/app_icon.png
 
 flutter_launcher_icons:

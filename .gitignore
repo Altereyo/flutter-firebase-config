@@ -10,7 +10,7 @@
 .svn/
 migrate_working_dir/
 
-/lib/google-services.json
+/lib/google-services111.json
 /lib/firebase_options.dart
 
 # IntelliJ related

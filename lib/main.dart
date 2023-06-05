@@ -1,8 +1,7 @@
 import 'package:flutter_firebase_config/data/services/connection_service.dart';
 import 'package:flutter_firebase_config/data/services/firebase_service.dart';
 import 'package:flutter_firebase_config/modules/connection_error/connection_error.dart';
-import 'package:flutter_firebase_config/modules/news/news_controlller.dart';
-import 'package:flutter_firebase_config/modules/news/news_screen.dart';
+import 'package:flutter_firebase_config/modules/plug/home_page.dart';
 import 'package:flutter_firebase_config/modules/webview/webview_controller.dart';
 import 'package:flutter_firebase_config/modules/webview/webview_screen.dart';
 import 'package:flutter_firebase_config/core/functions/functions.dart';
@@ -33,9 +32,8 @@ Future<void> main() async {
           binding: BindingsBuilder(() => Get.lazyPut<WebViewController>(() => WebViewController()))
         ),
         GetPage(
-          name: '/news',
-          page: () => const NewsScreen(),
-          binding: BindingsBuilder(() => Get.lazyPut<NewsController>(() => NewsController()))
+          name: '/plug',
+          page: () => PlugPage(),
         ),
         GetPage(
           name: '/connection_error',
@@ -47,6 +45,6 @@ Future<void> main() async {
 }
 
 Future<void> initServices() async {
-  Get.lazyPut(() => FirebaseService());
+  Get.put(FirebaseService());
   Get.lazyPut(() => ConnectionService());
 }

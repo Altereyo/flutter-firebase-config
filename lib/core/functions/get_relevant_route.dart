@@ -28,7 +28,7 @@ Future<String> getRelevantRoute() async {
     String webviewLink = remoteConfig!.getString('url');
 
     if (webviewLink == '' || isEmulator) {
-      return '/news';
+      return '/plug';
     } else {
       storage.setString('webview_link', webviewLink);
       return '/webview';
