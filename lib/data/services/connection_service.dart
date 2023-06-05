@@ -9,7 +9,7 @@ class ConnectionService extends GetxService {
   Future<void> initConnectionListener() async {
     // we are not disposing listener anywhere, because it should work always, but we have method in service to do this
     connectionStreamSubscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) async {
-      print('CONNECT RES ===== $result');
+      print('CONNECTION CHANGED: $result');
       final bool connectionExists = (result == ConnectivityResult.mobile ||
           result == ConnectivityResult.ethernet ||
           result == ConnectivityResult.wifi ||
