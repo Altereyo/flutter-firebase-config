@@ -15,10 +15,11 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
   late bool _hasStarted;
   late Animation<double> _snakeAnimation;
   late AnimationController _snakeController;
+  Timer? gameTimer;
   late String _currentSnakeDirection;
   late int _snakeFoodPosition;
   List _snake = [404, 405, 406, 407];
-  final int _noOfSquares = 500;
+  final int _noOfSquares = 480;
   final Duration _duration = Duration(milliseconds: 250);
   final int _squareSize = 20;
   Random _random = Random();
@@ -41,8 +42,14 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
         CurvedAnimation(curve: Curves.easeInOut, parent: _snakeController);
   }
 
+  @override
+  void dispose() {
+    if (gameTimer != null && gameTimer!.isActive) gameTimer!.cancel();
+    super.dispose();
+  }
+
   void _gameStart() {
-    Timer.periodic(Duration(milliseconds: 250), (Timer timer) {
+    gameTimer = Timer.periodic(Duration(milliseconds: 250), (Timer timer) {
       _updateSnake();
       if (_hasStarted) timer.cancel();
     });
@@ -57,7 +64,7 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
   void _updateSnake() {
     if (!_hasStarted) {
       setState(() {
-        _playerScore = (_snake.length - 4) * 100;
+        _playerScore = (_snake.length - 4);
         switch (_currentSnakeDirection) {
           case 'DOWN':
             if (_snake.last > _noOfSquares)
@@ -105,45 +112,71 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
     }
   }
 
+  Widget _renderField (int index) {
+    if (_snake.contains(index)) {
+      return Container(color: AppColors.snakeColor);
+    } else if (index == _snakeFoodPosition) {
+        return Container(
+          color: AppColors.fieldColor,
+          child: Image.asset('assets/images/diamond.png'),
+        );
+    } else {
+      return Container(color: AppColors.fieldColor);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SnakeGameFlutter',
-            style: TextStyle(color: AppColors.textColor, fontSize: 20.0)),
+        title: Text(
+          'Snake Game',
+          style: TextStyle(color: AppColors.textColor, fontSize: 20.0),
+        ),
+        iconTheme: IconThemeData(
+          color: AppColors.textColor, //change your color here
+        ),
         centerTitle: false,
         backgroundColor: AppColors.backgroundColor,
         actions: <Widget>[
           Center(
-              child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text('Score: $_playerScore',
-                style: TextStyle(fontSize: 16.0, color: AppColors.textColor)),
-          ))
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
+                'Score: $_playerScore',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  color: AppColors.textColor,
+                ),
+              ),
+            ),
+          )
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: AppColors.snakeColor,
-          elevation: 20,
-          label: Text(
-            _hasStarted ? 'Start' : 'Pause',
-            style: TextStyle(
-              color: AppColors.textColor
-            ),
-          ),
-          onPressed: () {
-            setState(() {
-              if (_hasStarted)
-                _snakeController.forward();
-              else
-                _snakeController.reverse();
-              _hasStarted = !_hasStarted;
-              _gameStart();
-            });
-          },
-          icon: AnimatedIcon(
-              icon: AnimatedIcons.play_pause, progress: _snakeAnimation)),
+        backgroundColor: AppColors.snakeColor,
+        elevation: 20,
+        label: Text(
+          _hasStarted ? 'Start' : 'Pause',
+          style: TextStyle(color: AppColors.textColor),
+        ),
+        onPressed: () {
+          setState(() {
+            if (_hasStarted)
+              _snakeController.forward();
+            else
+              _snakeController.reverse();
+            _hasStarted = !_hasStarted;
+            _gameStart();
+          });
+        },
+        icon: AnimatedIcon(
+          icon: AnimatedIcons.play_pause,
+          progress: _snakeAnimation,
+          color: AppColors.textColor,
+        ),
+      ),
       body: Center(
         child: GestureDetector(
           onVerticalDragUpdate: (drag) {
@@ -179,12 +212,7 @@ class _GamePageState extends State<GamePage> with TickerProviderStateMixin {
                               : _snake.contains(index)
                                   ? BorderRadius.circular(2.5)
                                   : BorderRadius.circular(1),
-                      child: Container(
-                          color: _snake.contains(index)
-                              ? AppColors.snakeColor
-                              : index == _snakeFoodPosition
-                                  ? AppColors.diamondColor
-                                  : AppColors.fieldColor),
+                      child: _renderField(index)
                     ),
                   ),
                 );

@@ -22,6 +22,24 @@ class PlugPage extends StatelessWidget {
                   fontSize: 40.0,
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.bold,
+                  shadows: const [
+                    Shadow(
+                      // bottomLeft
+                        offset: Offset(-1.5, -1.5),
+                        color: Colors.black),
+                    Shadow(
+                      // bottomRight
+                        offset: Offset(1.5, -1.5),
+                        color: Colors.black),
+                    Shadow(
+                      // topRight
+                        offset: Offset(1.5, 1.5),
+                        color: Colors.black),
+                    Shadow(
+                      // topLeft
+                        offset: Offset(-1.5, 1.5),
+                        color: Colors.black),
+                  ],
                 ),
               ),
               const SizedBox(height: 50.0),
@@ -33,12 +51,19 @@ class PlugPage extends StatelessWidget {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => GamePage()));
                 },
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.play_circle_filled,
+                    const Icon(Icons.play_arrow,
                         color: Colors.white, size: 30.0),
-                    Text('Start game')
+                    const SizedBox(width: 10),
+                    Text(
+                      'Start game',
+                      style: TextStyle(
+                        color: AppColors.textColor,
+                        fontSize: 18,
+                      ),
+                    )
                   ],
                 ),
               ),
