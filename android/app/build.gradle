@@ -29,7 +29,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    namespace "com.huone.play.lucky"
+    namespace "com.nova88.path.spoty"
     compileSdkVersion 33
     ndkVersion flutter.ndkVersion
 
@@ -47,7 +47,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.huone.play.lucky"
+        applicationId "com.nova88.path.spoty"
         minSdkVersion 21
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()

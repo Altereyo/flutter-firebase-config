@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "876204376351",
-    "project_id": "optionway-webview",
-    "storage_bucket": "optionway-webview.appspot.com"
+    "project_number": "12597848828",
+    "project_id": "novnegr-8c13c",
+    "storage_bucket": "novnegr-8c13c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:876204376351:android:96ccb6dc1e66ddd739f02a",
+        "mobilesdk_app_id": "1:12597848828:android:c8907e1a8456975d078579",
         "android_client_info": {
-          "package_name": "com.huone.play.lucky"
+          "package_name": "com.nova88.path.spoty"
         }
       },
       "oauth_client": [
         {
-          "client_id": "876204376351-mmgg831htdumpj7isv709q4v702bjvec.apps.googleusercontent.com",
+          "client_id": "12597848828-d64c494evpefp3kisg5evc1g9965il4a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBwI-rNbRyv-Eg-iBI_wqI6SOTmFUxpc5E"
+          "current_key": "AIzaSyDSnFLpM3ObkNAsEauJkCEZ73xKBAaquxo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "876204376351-mmgg831htdumpj7isv709q4v702bjvec.apps.googleusercontent.com",
+              "client_id": "12597848828-d64c494evpefp3kisg5evc1g9965il4a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
