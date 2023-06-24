@@ -15,7 +15,7 @@ class PlugPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Welcome to Diamond Snake game!',
+                'Welcome to\nBall Swap game!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: AppColors.textColor,
@@ -45,7 +45,7 @@ class PlugPage extends StatelessWidget {
               const SizedBox(height: 50.0),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: AppColors.snakeColor,
+                  primary: AppColors.accentColor,
                 ),
                 onPressed: () {
                   Navigator.of(context).push(

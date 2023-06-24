@@ -51,7 +51,7 @@ class GameOver extends StatelessWidget {
           const SizedBox(height: 50.0),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: AppColors.snakeColor,
+              primary: AppColors.accentColor,
             ),
             onPressed: () {
               Navigator.of(context).pushReplacement(
