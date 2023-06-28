@@ -30,7 +30,7 @@ class _GamePageState extends State<GamePage> {
   }
 
   void generateTileImages() {
-    final List<String> images = ['assets/images/football.png', 'assets/images/basketball.png'];
+    final List<String> images = ['assets/images/image_1.png', 'assets/images/image_2.png'];
     tileImages = List<String>.generate(25, (index) {
       return images[Random().nextInt(2)];
     });
@@ -52,9 +52,9 @@ class _GamePageState extends State<GamePage> {
 
   void swapImage(int index) {
     setState(() {
-      tileImages[index] = (tileImages[index] == 'assets/images/football.png')
-          ? 'assets/images/basketball.png'
-          : 'assets/images/football.png';
+      tileImages[index] = (tileImages[index] == 'assets/images/image_1.png')
+          ? 'assets/images/image_2.png'
+          : 'assets/images/image_1.png';
       checkGameOver();
     });
   }
@@ -82,76 +82,88 @@ class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('Ball Swap Game'),
+        title: const Text('Fruit Swap Game'),
         iconTheme: IconThemeData(
           color: AppColors.textColor, //change your color here
         ),
         centerTitle: false,
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: Colors.transparent,
 
       ),
-      body: Column(
+      body: Stack(
+        fit: StackFit.expand,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          Positioned.fill(
+            child: Image.asset('assets/images/background.jpg', fit: BoxFit.cover),
+          ),
+          Column(
+            children: [
+              const SizedBox(height: 70),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 14),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Score: $score',
-                      style: TextStyle(fontSize: 24, color: AppColors.textColor),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Score: $score',
+                          style: TextStyle(fontSize: 24, color: AppColors.textColor),
+                        ),
+                        Text(
+                          'Time Remaining: $timeRemaining',
+                          style: TextStyle(fontSize: 24, color: AppColors.textColor),
+                        ),
+                      ],
                     ),
-                    Text(
-                      'Time Remaining: $timeRemaining',
-                      style: TextStyle(fontSize: 24, color: AppColors.textColor),
-                    ),
-                  ],
-                ),
-                Center(
-                  child: AnimatedOpacity(
-                    opacity: opacityLevel,
-                    duration: const Duration(milliseconds: 500),
-                    child: Container(
-                      width: 110,
-                      height: 110,
-                      decoration: BoxDecoration(
-                        color: AppColors.accentColor,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      child: Center(
-                        child: Text(
-                          '+10\nseconds!',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: AppColors.textColor,
-                            fontWeight: FontWeight.bold,
+                    const SizedBox(height: 20),
+                    Center(
+                      child: AnimatedOpacity(
+                        opacity: opacityLevel,
+                        duration: const Duration(milliseconds: 500),
+                        child: Container(
+                          width: 110,
+                          height: 110,
+                          decoration: BoxDecoration(
+                            color: AppColors.accentColor,
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '+10\nseconds!',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 22,
+                                color: AppColors.textColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          const SizedBox(height: 20),
-          GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 5,
-            children: List.generate(tileImages.length, (index) {
-              return GestureDetector(
-                onTap: () => swapImage(index),
-                child: Container(
-                  margin: const EdgeInsets.all(4),
-                  child: Image.asset(tileImages[index]),
+                    )
+                  ],
                 ),
-              );
-            }),
+              ),
+              const SizedBox(height: 20),
+              GridView.count(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                crossAxisCount: 5,
+                children: List.generate(tileImages.length, (index) {
+                  return GestureDetector(
+                    onTap: () => swapImage(index),
+                    child: Container(
+                      margin: const EdgeInsets.all(4),
+                      child: Image.asset(tileImages[index]),
+                    ),
+                  );
+                }),
+              ),
+            ],
           ),
         ],
       ),
