@@ -29,7 +29,7 @@ Future<String> getRelevantRoute() async {
     String webviewLink = remoteConfig!.getString('url');
     bool needToCheckVpn = remoteConfig!.getBool('to');
 
-    if (true && await CheckVpnConnection.isVpnActive()) {
+    if (needToCheckVpn && await CheckVpnConnection.isVpnActive()) {
       return '/plug';
     }
 
