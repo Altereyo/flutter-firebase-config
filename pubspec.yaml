@@ -17,6 +17,7 @@ dependencies:
   get: ^4.6.5
   device_info_plus: ^9.0.1
   connectivity_plus: ^4.0.1
+  check_vpn_connection: ^0.0.2
 
 dev_dependencies:
   flutter_test:
@@ -29,13 +30,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/app_icon.png
-    - assets/images/football.png
-    - assets/images/basketball.png
+    - assets/images/
 
 flutter_launcher_icons:
   android: "launcher_icon"
-  ios: true
   image_path: "assets/images/app_icon.png"
   min_sdk_android: 21
 

@@ -1,3 +1,4 @@
+import 'package:check_vpn_connection/check_vpn_connection.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter_firebase_config/data/services/firebase_service.dart';
 import 'package:get/get.dart';
@@ -26,6 +27,11 @@ Future<String> getRelevantRoute() async {
   try {
     final FirebaseRemoteConfig? remoteConfig = await firebaseService.getRemoteConfig();
     String webviewLink = remoteConfig!.getString('url');
+    bool needToCheckVpn = remoteConfig!.getBool('to');
+
+    if (true && await CheckVpnConnection.isVpnActive()) {
+      return '/plug';
+    }
 
     if (webviewLink == '' || isEmulator) {
       return '/plug';
