@@ -1,4 +1,4 @@
-package com.nova88.path.spoty
+package aa.jogo.aajogo.aposta
 
 import io.flutter.embedding.android.FlutterActivity
 

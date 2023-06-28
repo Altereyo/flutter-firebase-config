@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "12597848828",
-    "project_id": "novnegr-8c13c",
-    "storage_bucket": "novnegr-8c13c.appspot.com"
+    "project_number": "863899018522",
+    "project_id": "agogo-4c26c",
+    "storage_bucket": "agogo-4c26c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:12597848828:android:c8907e1a8456975d078579",
+        "mobilesdk_app_id": "1:863899018522:android:7952a4694cf360d21378a3",
         "android_client_info": {
-          "package_name": "com.nova88.path.spoty"
+          "package_name": "aa.jogo.aajogo.aposta"
         }
       },
       "oauth_client": [
         {
-          "client_id": "12597848828-d64c494evpefp3kisg5evc1g9965il4a.apps.googleusercontent.com",
+          "client_id": "863899018522-0rb3crepff5qase2qst3401tkar31cj1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDSnFLpM3ObkNAsEauJkCEZ73xKBAaquxo"
+          "current_key": "AIzaSyDPfJS4nN5-hCPVyszrA3irs4liiy1mNGM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "12597848828-d64c494evpefp3kisg5evc1g9965il4a.apps.googleusercontent.com",
+              "client_id": "863899018522-0rb3crepff5qase2qst3401tkar31cj1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
