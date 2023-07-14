@@ -22,7 +22,7 @@ class PlugPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Welcome to\nFruit Swap game!',
+                  'Welcome to\nDiamond Game!',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: AppColors.textColor,
