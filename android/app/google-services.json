@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "863899018522",
-    "project_id": "agogo-4c26c",
-    "storage_bucket": "agogo-4c26c.appspot.com"
+    "project_number": "928012935828",
+    "project_id": "glnesgr",
+    "storage_bucket": "glnesgr.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:863899018522:android:7952a4694cf360d21378a3",
+        "mobilesdk_app_id": "1:928012935828:android:ff234491f83315552e0a81",
         "android_client_info": {
-          "package_name": "aa.jogo.aajogo.aposta"
+          "package_name": "puzzles.diamonds.rubies"
         }
       },
       "oauth_client": [
         {
-          "client_id": "863899018522-0rb3crepff5qase2qst3401tkar31cj1.apps.googleusercontent.com",
+          "client_id": "928012935828-1jfk921n019qkenmj7m05mlrttng9nkt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDPfJS4nN5-hCPVyszrA3irs4liiy1mNGM"
+          "current_key": "AIzaSyAS7wen4HlbbrvfCBi9mD61XVjMSt5MjBg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "863899018522-0rb3crepff5qase2qst3401tkar31cj1.apps.googleusercontent.com",
+              "client_id": "928012935828-1jfk921n019qkenmj7m05mlrttng9nkt.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
